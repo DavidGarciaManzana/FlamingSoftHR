@@ -1,6 +1,8 @@
+using FlamingSoftHR.Server;
 using FlamingSoftHR.Server.Data;
 using FlamingSoftHR.Server.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +14,11 @@ namespace FlamingSoftHR
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            //Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            //builder.Services.AddDbContext<ApplicationDbContext>(options =>
+              //  options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<FlamingSoftHRContext>(p => p.UseInMemoryDatabase("FlamingSoftHRDB"));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -32,7 +35,7 @@ namespace FlamingSoftHR
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+           // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -52,7 +55,7 @@ namespace FlamingSoftHR
 
             app.UseRouting();
 
-            app.UseIdentityServer();
+           // app.UseIdentityServer();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -60,6 +63,12 @@ namespace FlamingSoftHR
             app.MapRazorPages();
             app.MapControllers();
             app.MapFallbackToFile("index.html");
+
+            app.MapGet("/dsconextion", async ([FromServices] FlamingSoftHRContext dbContext) =>
+                {
+                    dbContext.Database.EnsureCreated();
+                    return Results.Ok("Database in Memory " + dbContext.Database.IsInMemory());
+                });
 
             app.Run();
         }
