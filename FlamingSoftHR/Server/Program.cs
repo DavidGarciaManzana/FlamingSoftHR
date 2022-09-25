@@ -17,8 +17,11 @@ namespace FlamingSoftHR
             //Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-              //  options.UseSqlServer(connectionString));
-            builder.Services.AddDbContext<FlamingSoftHRContext>(p => p.UseInMemoryDatabase("FlamingSoftHRDB"));
+            //  options.UseSqlServer(connectionString));
+            //Database in memory
+            //builder.Services.AddDbContext<FlamingSoftHRContext>(p => p.UseInMemoryDatabase("FlamingSoftHRDB"));
+            builder.Services.AddSqlServer<FlamingSoftHRContext>(builder.Configuration.GetConnectionString("cnFlamingSoft"));
+
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -64,7 +67,7 @@ namespace FlamingSoftHR
             app.MapControllers();
             app.MapFallbackToFile("index.html");
 
-            app.MapGet("/dsconextion", async ([FromServices] FlamingSoftHRContext dbContext) =>
+            app.MapGet("/dbConnection", async ([FromServices] FlamingSoftHRContext dbContext) =>
                 {
                     dbContext.Database.EnsureCreated();
                     return Results.Ok("Database in Memory " + dbContext.Database.IsInMemory());
