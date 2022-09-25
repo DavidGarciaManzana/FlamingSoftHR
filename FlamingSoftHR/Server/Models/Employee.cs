@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlamingSoftHR.Server.Models
 {
-    public class EmployeesModel
+    public class Employee
     {
         [Key]
         public int Id { get; set; }
@@ -20,8 +20,8 @@ namespace FlamingSoftHR.Server.Models
         [ForeignKey("EmployeeTypeId")]
         public int EmployeeTypeId { get; set; }
 
-        public virtual DepartmentsModel DepartmentsModel { get; set; }
-        public virtual EmployeesTypesModel EmployeesTypesModel { get; set; }
-        public virtual ICollection<LoggedTimeModel> LoggedTimeModel { get; set; }
+        public virtual Department DepartmentsModel { get; set; }
+        public virtual EmployeeType EmployeesTypesModel { get; set; }
+        public virtual ICollection<LoggedTime> LoggedTimeModel { get; set; }
     }
 }

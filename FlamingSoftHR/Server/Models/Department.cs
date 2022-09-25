@@ -2,7 +2,7 @@
 
 namespace FlamingSoftHR.Server.Models
 {
-    public class DepartmentsModel
+    public class Department
     {
         [Key]
         public int Id { get; set; }
@@ -10,7 +10,7 @@ namespace FlamingSoftHR.Server.Models
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        public virtual ICollection<EmployeesModel> EmployeesModels { get; set; }
+        public virtual ICollection<Employee> EmployeesModels { get; set; }
 
     }
 }

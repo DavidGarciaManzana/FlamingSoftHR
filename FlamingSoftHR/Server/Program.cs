@@ -72,6 +72,10 @@ namespace FlamingSoftHR
                     dbContext.Database.EnsureCreated();
                     return Results.Ok("Database in Memory " + dbContext.Database.IsInMemory());
                 });
+            app.MapGet("/api/Departments", async ([FromServices] FlamingSoftHRContext dbContext) =>
+                {
+                    return Results.Ok(dbContext.Departments);
+                });
 
             app.Run();
         }

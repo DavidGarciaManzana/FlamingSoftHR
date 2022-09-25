@@ -5,11 +5,11 @@ namespace FlamingSoftHR.Server
 {
     public class FlamingSoftHRContext : DbContext
     {
-        public DbSet<DepartmentsModel> DepartmentsModels { get; set; }
-        public DbSet<EmployeesModel> EmployeesModels { get; set; }
-        public DbSet<EmployeesTypesModel> EmployeesTypesModels { get; set; }
-        public DbSet<LoggedTimeModel> LoggedTimeModels { get; set; }
-        public DbSet<LoggedTimeTypesModel> LoggedTimeTypesModels { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeType> EmployeeTypes { get; set; }
+        public DbSet<LoggedTime> LoggedTimes { get; set; }
+        public DbSet<LoggedTimeType> LoggedTimeTypes { get; set; }
         public FlamingSoftHRContext(DbContextOptions<FlamingSoftHRContext> options):base(options){ }
     }
 }

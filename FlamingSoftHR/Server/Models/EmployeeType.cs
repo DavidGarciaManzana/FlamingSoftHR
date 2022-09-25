@@ -2,13 +2,13 @@
 
 namespace FlamingSoftHR.Server.Models
 {
-    public class EmployeesTypesModel
+    public class EmployeeType
     {
         [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
         public string Description { get; set; }
-        public virtual ICollection<EmployeesModel> EmployeesModels { get; set; }
+        public virtual ICollection<Employee> EmployeesModels { get; set; }
     }
 }
