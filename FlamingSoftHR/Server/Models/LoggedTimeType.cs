@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<LoggedTime> LoggedTimeModel { get; set; }
+        public virtual ICollection<LoggedTime> LoggedTimes { get; set; }
     }
 }

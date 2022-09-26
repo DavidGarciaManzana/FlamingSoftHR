@@ -9,6 +9,6 @@ namespace FlamingSoftHR.Server.Models
         [Required]
         [MaxLength(50)]
         public string Description { get; set; }
-        public virtual ICollection<Employee> EmployeesModels { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

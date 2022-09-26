@@ -15,7 +15,8 @@ namespace FlamingSoftHR.Server.Models
         public int EmployeeId { get; set; }
         [ForeignKey("LoggedTimeTypedId")]
         public int LoggedTimeTypedId { get; set; }
-        public virtual Employee EmployeesModel { get; set; }
-        public virtual LoggedTimeType LoggedTimeTypesModel { get; set; }
+        public virtual Employee Employees { get; set; }
+        
+        public virtual LoggedTimeType LoggedTimeTypes { get; set; }
     }
 }

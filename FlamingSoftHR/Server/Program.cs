@@ -74,7 +74,11 @@ namespace FlamingSoftHR
                 });
             app.MapGet("/api/Departments", async ([FromServices] FlamingSoftHRContext dbContext) =>
                 {
-                    return Results.Ok(dbContext.Departments);
+                    return Results.Ok(dbContext.Departments.Include(p=>p.Employees));
+                }); 
+            app.MapGet("/api/TimeManagement", async ([FromServices] FlamingSoftHRContext dbContext) =>
+                {
+                    return Results.Ok(dbContext.Employees);
                 });
 
             app.Run();
