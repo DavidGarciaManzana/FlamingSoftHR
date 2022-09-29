@@ -104,7 +104,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[AspNetUsers](
+CREATE TABLE [dbo].[AspNetUsers](  
 	[Id] [nvarchar](450) NOT NULL,
 	[UserName] [nvarchar](256) NULL,
 	[NormalizedUserName] [nvarchar](256) NULL,
@@ -382,7 +382,7 @@ CREATE TABLE Employees
    (
       Id INT UNIQUE IDENTITY (100000,1)  NOT NULL, CONSTRAINT PK_Employees PRIMARY KEY CLUSTERED (Id),
 
-	  UserId NVARCHAR(450) NOT NULL UNIQUE,
+	  UserId NVARCHAR(450) NOT NULL,
 	  CONSTRAINT FK_Employees_To_AspNetUsers FOREIGN KEY (UserId)
       REFERENCES AspNetUsers (Id)
       ON DELETE CASCADE

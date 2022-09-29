@@ -11,10 +11,12 @@ namespace FlamingSoftHR.Server.Models
         public DateTime DateLogged { get; set; }
         [Required]
         public float Hours { get; set; }
+        [Required]
+        public int LogType { get; set; }
         [ForeignKey("EmployeeId")]
         public int EmployeeId { get; set; }
         [ForeignKey("LoggedTimeTypedId")]
-        public int LoggedTimeTypedId { get; set; }
+        public int LoggedTimeTypeId { get; set; }
         public virtual Employee Employees { get; set; }
         
         public virtual LoggedTimeType LoggedTimeTypes { get; set; }
