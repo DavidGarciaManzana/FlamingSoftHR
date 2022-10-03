@@ -1,18 +1,60 @@
 ﻿@page "/counter"
+@using FlamingSoftHR.Server.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using FlamingSoftHR.Shared
+@attribute [Authorize]
+@inject HttpClient Http
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>Weather forecast</PageTitle>
 
-<h1>Counter</h1>
+<h1>Weather forecast</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p>This component demonstrates fetching data from the server.</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Id</td>
+                    <td>@forecast.UserName</td>
+                    <td>@forecast.Email</td>
+                    <td>@forecast.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p>Hola mundo</p>
 
 @code {
-    private int currentCount = 0;
+    private AspNetUser[]? forecasts;
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        try
+        {
+            forecasts = await Http.GetFromJsonAsync<AspNetUser[]>("AspNetUser");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
     }
 }

@@ -1,6 +1,7 @@
 using FlamingSoftHR.Server;
 using FlamingSoftHR.Server.Data;
 using FlamingSoftHR.Server.Models;
+using FlamingSoftHR.Server.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -21,14 +22,18 @@ namespace FlamingSoftHR
             //Database in memory
             //builder.Services.AddDbContext<FlamingSoftHRContext>(p => p.UseInMemoryDatabase("FlamingSoftHRDB"));
             builder.Services.AddSqlServer<FlamingSoftHRContext>(builder.Configuration.GetConnectionString("cnFlamingSoft"));
+           
+
+            builder.Services.AddScoped<IAspNetUserService, AspNetUserService>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<Server.Data.ApplicationDbContext>();
 
             builder.Services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+                .AddApiAuthorization<ApplicationUser, Server.Data.ApplicationDbContext>();
 
             builder.Services.AddAuthentication()
                 .AddIdentityServerJwt();
@@ -67,7 +72,7 @@ namespace FlamingSoftHR
             app.MapControllers();
             app.MapFallbackToFile("index.html");
 
-            app.MapGet("/Connection", async ([FromServices] FlamingSoftHRContext dbContext) =>
+         /*   app.MapGet("/Connection", async ([FromServices] FlamingSoftHRContext dbContext) =>
                 {
                     dbContext.Database.EnsureCreated();
                     return Results.Ok("Database in Memory " + dbContext.Database.IsInMemory());
@@ -138,7 +143,7 @@ namespace FlamingSoftHR
                 return Results.Ok(dbContext.__EFMigrationsHistory);
             });
 
-
+            */
             app.Run();
         }
     }

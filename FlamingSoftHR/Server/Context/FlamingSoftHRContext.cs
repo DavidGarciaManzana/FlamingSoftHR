@@ -1,5 +1,8 @@
-﻿using FlamingSoftHR.Server.Models;
+﻿using Duende.IdentityServer.EntityFramework.Options;
+using FlamingSoftHR.Server.Models;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace FlamingSoftHR.Server
 {
@@ -90,5 +93,4 @@ namespace FlamingSoftHR.Server
         }
     }
 
-    
 }

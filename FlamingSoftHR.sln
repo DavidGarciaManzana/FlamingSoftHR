@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlamingSoftHR.Server", "FlamingSoftHR\Server\FlamingSoftHR.Server.csproj", "{36843A49-E7F8-4796-BFB5-79E31AE883CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlamingSoftHR.Server", "FlamingSoftHR\Server\FlamingSoftHR.Server.csproj", "{36843A49-E7F8-4796-BFB5-79E31AE883CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlamingSoftHR.Client", "FlamingSoftHR\Client\FlamingSoftHR.Client.csproj", "{E1F64662-E369-4790-A92D-81BBA0EB49EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlamingSoftHR.Client", "FlamingSoftHR\Client\FlamingSoftHR.Client.csproj", "{E1F64662-E369-4790-A92D-81BBA0EB49EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlamingSoftHR.Shared", "FlamingSoftHR\Shared\FlamingSoftHR.Shared.csproj", "{18444DF3-EEC4-438A-8298-4058564EB405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlamingSoftHR.Shared", "FlamingSoftHR\Shared\FlamingSoftHR.Shared.csproj", "{18444DF3-EEC4-438A-8298-4058564EB405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
